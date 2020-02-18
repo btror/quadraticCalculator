@@ -4,6 +4,10 @@ var gc;
 
 function quadraticFunc() {
 
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
     var aval = document.getElementById("aInput").value;
     var bval = document.getElementById("bInput").value;
     var cval = document.getElementById("cInput").value;
@@ -23,6 +27,7 @@ function quadraticFunc() {
 
     var x;
     fun1(x);
+    
 
 
     if (status1 == false && status2 == false) {
