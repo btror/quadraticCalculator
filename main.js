@@ -2,6 +2,10 @@ var ga;
 var gb;
 var gc;
 
+var defaultGraph;
+fun1(defaultGraph);
+draw(defaultGraph);
+
 function quadraticFunc() {
 
     var canvas = document.getElementById("canvas");
@@ -39,38 +43,52 @@ function quadraticFunc() {
     var status1 = Number.isNaN(int1);
     var status2 = Number.isNaN(int2);
 
+    var letters = false;
+    if (Number.isNaN(a) == true || Number.isNaN(b) == true || Number.isNaN(c) == true) {
+        letters = true;
+    }
+
     var x;
 
-    if (status1 == false && status2 == false) {
-        document.getElementById("output").innerHTML = "Intercept at x=" + int2 + " and x=" + int1;
-        document.getElementById("output2").innerHTML = a + "x<sup>2</sup>+" + b + "x+" + c + "=0";
+    if (status1 == false && status2 == false && letters == false) {
+        document.getElementById("output").innerHTML = "Intercept at x = " + int2 + " and x = " + int1;
+        document.getElementById("output2").innerHTML = a + "x<sup>2</sup> + " + b + "x + " + c + " = 0";
         fun1(x);
         draw(x);
-        document.getElementById("output3").innerHTML = a + "(" + int1 + ")" + "<sup>2</sup>+" + b + "(" + int1 + ")+" + c + "=0";
-        document.getElementById("output4").innerHTML = a + "(" + int2 + ")" + "<sup>2</sup>+" + b + "(" + int2 + ")+" + c + "=0";
-        document.getElementById("output5").innerHTML = "F(x)=" + a + "x<sup>2</sup>+" + b + "x+" + c;
+        document.getElementById("output3").innerHTML = a + "(" + int1 + ")" + "<sup>2</sup> + " + b + "(" + int1 + ") + " + c + " = 0";
+        document.getElementById("output4").innerHTML = a + "(" + int2 + ")" + "<sup>2</sup> + " + b + "(" + int2 + ") + " + c + " = 0";
+        document.getElementById("output5").innerHTML = "F(x) = " + a + "x<sup>2</sup> + " + b + "x + " + c;
         
-    } else if (status1 == false && status2 == true) {
-        document.getElementById("output").innerHTML = "Intercept at x=" + int1;
-        document.getElementById("output2").innerHTML = a + "x<sup>2</sup>+" + b + "x+" + c + "=0";
+    } else if (status1 == false && status2 == true && letters == false) {
+        document.getElementById("output").innerHTML = "Intercept at x = " + int1;
+        document.getElementById("output2").innerHTML = a + "x<sup>2</sup> + " + b + "x + " + c + " = 0";
         fun1(x);
         draw(x);
-        document.getElementById("output3").innerHTML = a + "(" + int1 + ")" + "<sup>2</sup>+" + b + "(" + int1 + ")+" + c + "=0";
+        document.getElementById("output3").innerHTML = a + "(" + int1 + ")" + "<sup>2</sup> + " + b + "(" + int1 + ") + " + c + " = 0";
         document.getElementById("output4").innerHTML = "";
+        document.getElementById("output5").innerHTML = "F(x) = " + a + "x<sup>2</sup> + " + b + "x + " + c;
         
-    } else if (status1 == true && status2 == false) {
-        document.getElementById("output").innerHTML = "Intercept at x=" + int2;
-        document.getElementById("output2").innerHTML = a + "x<sup>2</sup>+" + b + "x+" + c + "=0";
+    } else if (status1 == true && status2 == false && letters == false) {
+        document.getElementById("output").innerHTML = "Intercept at x = " + int2;
+        document.getElementById("output2").innerHTML = a + "x<sup>2</sup> + " + b + "x + " + c + " = 0";
         fun1(x);
         draw(x);
         document.getElementById("output3").innerHTML = a + "(" + int2 + ")" + "<sup>2</sup>+" + b + "(" + int2 + ")+" + c + "=0";
         document.getElementById("output4").innerHTML = "";
+        document.getElementById("output5").innerHTML = "F(x) = " + a + "x<sup>2</sup> + " + b + "x + " + c;
         
     } else {
         document.getElementById("output").innerHTML = "This function has no real roots.";
         document.getElementById("output2").innerHTML = "";
+        fun1(x);
+        draw(x);
         document.getElementById("output3").innerHTML = "";
         document.getElementById("output4").innerHTML = "";
+        if (letters == false) {
+            document.getElementById("output5").innerHTML = "F(x) = " + a + "x<sup>2</sup> + " + b + "x + " + c;
+        } else {
+            document.getElementById("output5").innerHTML = "";
+        }
     }
 
 
@@ -127,5 +145,4 @@ function showAxes(ctx, axes) {
     ctx.moveTo(xmin, y0); ctx.lineTo(w, y0);  // X axis
     ctx.moveTo(x0, 0); ctx.lineTo(x0, h);  // Y axis
     ctx.stroke();
-    
 }
