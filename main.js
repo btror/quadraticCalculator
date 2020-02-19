@@ -48,6 +48,7 @@ function quadraticFunc() {
         draw(x);
         document.getElementById("output3").innerHTML = a + "(" + int1 + ")" + "<sup>2</sup>+" + b + "(" + int1 + ")+" + c + "=0";
         document.getElementById("output4").innerHTML = a + "(" + int2 + ")" + "<sup>2</sup>+" + b + "(" + int2 + ")+" + c + "=0";
+        document.getElementById("output5").innerHTML = "F(x)=" + a + "x<sup>2</sup>+" + b + "x+" + c;
         
     } else if (status1 == false && status2 == true) {
         document.getElementById("output").innerHTML = "Intercept at x=" + int1;
