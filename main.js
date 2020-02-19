@@ -19,33 +19,52 @@ function quadraticFunc() {
     gb = b;
     gc = c;
 
-    var int1 = ((b * -1) + Math.sqrt(Math.pow(b, 2) - 4 * a * c)) / (2 * a);
-    var int2 = ((b * -1) - Math.sqrt(Math.pow(b, 2) - 4 * a * c)) / (2 * a);
+    var int1;
+    var int2;
+
+    if (a != 0) {
+        var num1 = ((b * -1) + Math.sqrt(Math.pow(b, 2) - 4 * a * c)) / (2 * a);
+        var num2 = ((b * -1) - Math.sqrt(Math.pow(b, 2) - 4 * a * c)) / (2 * a);
+        int1 = num1;
+        int2 = num2;
+    } else {
+        int1 = (c * -1) / b;
+        int2 = 0/0;
+    }
+
+    if (int1 == int2 || b == 0) {
+        int2 = 0/0;
+    }
 
     var status1 = Number.isNaN(int1);
     var status2 = Number.isNaN(int2);
 
     var x;
-    fun1(x);
-    
-
 
     if (status1 == false && status2 == false) {
         document.getElementById("output").innerHTML = "Intercept at x=" + int2 + " and x=" + int1;
         document.getElementById("output2").innerHTML = a + "x<sup>2</sup>+" + b + "x+" + c + "=0";
-        document.getElementById("output3").innerHTML = a + "(" + int1 + ")" + "x<sup>2</sup>+" + b + "(" + int1 + ")+" + c + "=0";
-        document.getElementById("output4").innerHTML = a + "(" + int2 + ")" + "x<sup>2</sup>+" + b + "(" + int2 + ")+" + c + "=0";
-        draw();
+        fun1(x);
+        draw(x);
+        document.getElementById("output3").innerHTML = a + "(" + int1 + ")" + "<sup>2</sup>+" + b + "(" + int1 + ")+" + c + "=0";
+        document.getElementById("output4").innerHTML = a + "(" + int2 + ")" + "<sup>2</sup>+" + b + "(" + int2 + ")+" + c + "=0";
+        
     } else if (status1 == false && status2 == true) {
         document.getElementById("output").innerHTML = "Intercept at x=" + int1;
         document.getElementById("output2").innerHTML = a + "x<sup>2</sup>+" + b + "x+" + c + "=0";
-        document.getElementById("output3").innerHTML = a + "(" + int1 + ")" + "x<sup>2</sup>+" + b + "(" + int1 + ")+" + c + "=0";
+        fun1(x);
+        draw(x);
+        document.getElementById("output3").innerHTML = a + "(" + int1 + ")" + "<sup>2</sup>+" + b + "(" + int1 + ")+" + c + "=0";
         document.getElementById("output4").innerHTML = "";
+        
     } else if (status1 == true && status2 == false) {
         document.getElementById("output").innerHTML = "Intercept at x=" + int2;
         document.getElementById("output2").innerHTML = a + "x<sup>2</sup>+" + b + "x+" + c + "=0";
-        document.getElementById("output3").innerHTML = a + "(" + int2 + ")" + "x<sup>2</sup>+" + b + "(" + int2 + ")+" + c + "=0";
+        fun1(x);
+        draw(x);
+        document.getElementById("output3").innerHTML = a + "(" + int2 + ")" + "<sup>2</sup>+" + b + "(" + int2 + ")+" + c + "=0";
         document.getElementById("output4").innerHTML = "";
+        
     } else {
         document.getElementById("output").innerHTML = "This function has no real roots.";
         document.getElementById("output2").innerHTML = "";
@@ -70,12 +89,11 @@ function draw() {
     var axes = {}, ctx = canvas.getContext("2d");
     axes.x0 = .5 + .5 * canvas.width;  // x0 pixels from left to x=0
     axes.y0 = .5 + .5 * canvas.height; // y0 pixels from top to y=0
-    axes.scale = 40;                 // 40 pixels from x=0 to x=1
+    axes.scale = 15;                 // 40 pixels from x=0 to x=1
     axes.doNegativeX = true;
 
     showAxes(ctx, axes);
     funGraph(ctx, axes, fun1, "rgb(11,153,11)", 1);
-    funGraph(ctx, axes, fun2, "rgb(66,44,255)", 2);
 }
 
 function funGraph(ctx, axes, func, color, thick) {
@@ -85,6 +103,7 @@ function funGraph(ctx, axes, func, color, thick) {
     ctx.beginPath();
     ctx.lineWidth = thick;
     ctx.strokeStyle = color;
+    
 
     for (var i = iMin; i <= iMax; i++) {
         xx = dx * i; yy = scale * func(xx / scale);
@@ -102,6 +121,8 @@ function showAxes(ctx, axes) {
     var xmin = axes.doNegativeX ? 0 : x0;
     ctx.beginPath();
     ctx.strokeStyle = "rgb(128,128,128)";
+    ctx.fillStyle = "lightgray";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.moveTo(xmin, y0); ctx.lineTo(w, y0);  // X axis
     ctx.moveTo(x0, 0); ctx.lineTo(x0, h);  // Y axis
     ctx.stroke();
