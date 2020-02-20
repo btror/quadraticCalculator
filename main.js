@@ -2,6 +2,8 @@ var ga;
 var gb;
 var gc;
 
+var globalScale;
+
 var defaultGraph;
 fun1(defaultGraph);
 draw(defaultGraph);
@@ -32,6 +34,7 @@ function quadraticFunc() {
 
     var int1;
     var int2;
+    
 
     if (a != 0) {
         var num1 = ((b * -1) + Math.sqrt(Math.pow(b, 2) - 4 * a * c)) / (2 * a);
@@ -47,8 +50,67 @@ function quadraticFunc() {
         int2 = 0 / 0;
     }
 
+    
+
     var status1 = Number.isNaN(int1);
     var status2 = Number.isNaN(int2);
+    var inttemp;
+    if (int1 > int2 && status1 == false && status2 == false) {
+        if (int1 < 0) {
+            inttemp = int1 * -1;
+            globalScale = 100/inttemp;
+        } else {
+            globalScale = 100/int1;
+        }
+
+        if (int1 == 0 || inttemp < 5) {
+            globalScale = 5;
+        }
+
+        
+        
+    } else if (int1 < int2 && status1 == false && status2 == false){
+        if (int2 < 0) {
+            inttemp = int2 * -1;
+            globalScale = 100/inttemp;
+        } else {
+            globalScale = 100/int2;
+        }
+        if (int2 == 0 || inttemp < 5) {
+            globalScale = 5;
+        }
+
+    } else if (status1 == false && status2 == true) {
+        if (int1 < 0) {
+            inttemp = int1 * -1;
+            globalScale = 100/inttemp;
+        } else {
+            globalScale = 100/int1;
+        }
+        if (int1 == 0 || inttemp < 5) {
+            globalScale = 5;
+        }
+    } else if (status1 == true && status2 == false) {
+        if (int2 < 0) {
+            inttemp = int2 * -1;
+            globalScale = 100/inttemp;
+        } else {
+            globalScale = 100/int2;
+        }
+        if (int2 == 0 || inttemp < 5) {
+            globalScale = 5;
+        }
+    } else {
+        //compare b and c values
+        if (c > a) {
+            globalScale = 100/(c*3);
+        } else if (c < a) {
+            globalScale = 100/(a*3);
+        } else {
+            globalScale = 5;
+        }
+        
+    }
 
     var letters = false;
     if (Number.isNaN(a) == true || Number.isNaN(b) == true || Number.isNaN(c) == true) {
@@ -69,9 +131,9 @@ function quadraticFunc() {
         document.getElementById("problem").innerHTML = "Find the solution for:<br>" + a + "x<sup>2</sup> + " + b + "x + " + c + " = 0";
         document.getElementById("listHow").innerHTML = "Using the quadratic formula where a = " + a + ", b = " + b + ", c = " + c;
         document.getElementById("steps").innerHTML = "x = (-(" + b + ") ± √((-(" + b + "))<sup>2</sup> - 4(" + a + ")(" + c + "))) / (2(" + a + "))<br>"
-            + "x = ((" + (b * -1) + ") ± √(" + Math.pow(b, 2) + " - 4(" + a + ")(" + c + "))) / (2(" + a + "))<br>"
-            + "x = ((" + (b * -1) + ") ± √(" + Math.pow(b, 2) + " - (" + (4 * a * c) + "))) / (" + 2 * a + ")<br>"
-            + "x = ((" + (b * -1) + ") ± √(" + (Math.pow(b, 2) + (-1 * (4 * a * c))) + ")) / (" + 2 * a + ")<br>"
+            + "x = (" + (b * -1) + " ± √(" + Math.pow(b, 2) + " - 4(" + a + ")(" + c + "))) / (2(" + a + "))<br>"
+            + "x = (" + (b * -1) + " ± √(" + Math.pow(b, 2) + " - (" + (4 * a * c) + "))) / (" + 2 * a + ")<br>"
+            + "x = (" + (b * -1) + " ± √(" + (Math.pow(b, 2) + (-1 * (4 * a * c))) + ")) / (" + 2 * a + ")<br><br>"
             + "root at x = (" + (b * -1) + " + " + Math.sqrt(Math.pow(b, 2) - 4 * a * c) + ") / " + 2 * a + " = " + ((b * -1) + Math.sqrt(Math.pow(b, 2) - 4 * a * c)) / (2 * a) + "<br>"
             + "root at x = (" + (b * -1) + " - " + Math.sqrt(Math.pow(b, 2) - 4 * a * c) + ") / " + 2 * a + " = " + ((b * -1) - Math.sqrt(Math.pow(b, 2) - 4 * a * c)) / (2 * a);
 
@@ -88,9 +150,9 @@ function quadraticFunc() {
         document.getElementById("problem").innerHTML = "Find the solution for:<br>" + a + "x<sup>2</sup> + " + b + "x + " + c + " = 0";
         document.getElementById("listHow").innerHTML = "Using the quadratic formula where a = " + a + ", b = " + b + ", c = " + c;
         document.getElementById("steps").innerHTML = "x = (-(" + b + ") ± √((-(" + b + "))<sup>2</sup> - 4(" + a + ")(" + c + "))) / (2(" + a + "))<br>"
-            + "x = ((" + (b * -1) + ") ± √(" + Math.pow(b, 2) + " - 4(" + a + ")(" + c + "))) / (2(" + a + "))<br>"
-            + "x = ((" + (b * -1) + ") ± √(" + Math.pow(b, 2) + " - (" + (4 * a * c) + "))) / (" + 2 * a + ")<br>"
-            + "x = ((" + (b * -1) + ") ± √(" + (Math.pow(b, 2) + (-1 * (4 * a * c))) + ")) / (" + 2 * a + ")<br>"
+            + "x = (" + (b * -1) + " ± √(" + Math.pow(b, 2) + " - 4(" + a + ")(" + c + "))) / (2(" + a + "))<br>"
+            + "x = (" + (b * -1) + " ± √(" + Math.pow(b, 2) + " - (" + (4 * a * c) + "))) / (" + 2 * a + ")<br>"
+            + "x = (" + (b * -1) + " ± √(" + (Math.pow(b, 2) + (-1 * (4 * a * c))) + ")) / (" + 2 * a + ")<br><br>"
             + "root at x = (" + (b * -1) + " + " + Math.sqrt(Math.pow(b, 2) - 4 * a * c) + ") / " + 2 * a + " = " + ((b * -1) + Math.sqrt(Math.pow(b, 2) - 4 * a * c)) / (2 * a) + "<br>"
             + "root at x = (" + (b * -1) + " - " + Math.sqrt(Math.pow(b, 2) - 4 * a * c) + ") / " + 2 * a + " = " + ((b * -1) - Math.sqrt(Math.pow(b, 2) - 4 * a * c)) / (2 * a);
 
@@ -106,9 +168,9 @@ function quadraticFunc() {
         document.getElementById("problem").innerHTML = "Find the solution for:<br>" + a + "x<sup>2</sup> + " + b + "x + " + c + " = 0";
         document.getElementById("listHow").innerHTML = "Using the quadratic formula where a = " + a + ", b = " + b + ", c = " + c;
         document.getElementById("steps").innerHTML = "x = (-(" + b + ") ± √((-(" + b + "))<sup>2</sup> - 4(" + a + ")(" + c + "))) / (2(" + a + "))<br>"
-            + "x = ((" + (b * -1) + ") ± √(" + Math.pow(b, 2) + " - 4(" + a + ")(" + c + "))) / (2(" + a + "))<br>"
-            + "x = ((" + (b * -1) + ") ± √(" + Math.pow(b, 2) + " - (" + (4 * a * c) + "))) / (" + 2 * a + ")<br>"
-            + "x = ((" + (b * -1) + ") ± √(" + (Math.pow(b, 2) + (-1 * (4 * a * c))) + ")) / (" + 2 * a + ")<br>"
+            + "x = (" + (b * -1) + " ± √(" + Math.pow(b, 2) + " - 4(" + a + ")(" + c + "))) / (2(" + a + "))<br>"
+            + "x = (" + (b * -1) + " ± √(" + Math.pow(b, 2) + " - (" + (4 * a * c) + "))) / (" + 2 * a + ")<br>"
+            + "x = (" + (b * -1) + " ± √(" + (Math.pow(b, 2) + (-1 * (4 * a * c))) + ")) / (" + 2 * a + ")<br><br>"
             + "root at x = (" + (b * -1) + " + " + Math.sqrt(Math.pow(b, 2) - 4 * a * c) + ") / " + 2 * a + " = " + ((b * -1) + Math.sqrt(Math.pow(b, 2) - 4 * a * c)) / (2 * a) + "<br>"
             + "root at x = (" + (b * -1) + " - " + Math.sqrt(Math.pow(b, 2) - 4 * a * c) + ") / " + 2 * a + " = " + ((b * -1) - Math.sqrt(Math.pow(b, 2) - 4 * a * c)) / (2 * a);
 
@@ -147,7 +209,15 @@ function draw() {
     var axes = {}, ctx = canvas.getContext("2d");
     axes.x0 = .5 + .5 * canvas.width;  // x0 pixels from left to x=0
     axes.y0 = .5 + .5 * canvas.height; // y0 pixels from top to y=0
-    axes.scale = 15;                 // 40 pixels from x=0 to x=1
+    
+    // if (firstIntercept > secondIntercept) {
+    //     axes.scale = 100/firstIntercept; 
+    // } else if (firstIntercept < secondIntercept) {
+    //     axes.scale = 100/secondIntercept;
+    // } else {
+    //     axes.scale = 100/firstIntercept;
+    // }
+    axes.scale = globalScale;                // 40 pixels from x=0 to x=1
     axes.doNegativeX = true;
 
     showAxes(ctx, axes);
