@@ -8,6 +8,13 @@ draw(defaultGraph);
 
 function quadraticFunc() {
 
+    var quadf = document.getElementById("quadform");
+    if (quadf.style.display === "none") {
+        quadf.style.display = "block";
+    } else {
+        //quadf.style.display = "none";
+    }
+
     var canvas = document.getElementById("canvas");
     var ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -33,11 +40,11 @@ function quadraticFunc() {
         int2 = num2;
     } else {
         int1 = (c * -1) / b;
-        int2 = 0/0;
+        int2 = 0 / 0;
     }
 
     if (int1 == int2 || b == 0) {
-        int2 = 0/0;
+        int2 = 0 / 0;
     }
 
     var status1 = Number.isNaN(int1);
@@ -58,7 +65,17 @@ function quadraticFunc() {
         document.getElementById("output3").innerHTML = a + "(" + int1 + ")" + "<sup>2</sup> + " + b + "(" + int1 + ") + " + c + " = 0";
         document.getElementById("output4").innerHTML = a + "(" + int2 + ")" + "<sup>2</sup> + " + b + "(" + int2 + ") + " + c + " = 0";
         document.getElementById("output5").innerHTML = "F(x) = " + a + "x<sup>2</sup> + " + b + "x + " + c;
-        
+
+        document.getElementById("problem").innerHTML = "Find the solution for:<br>" + a + "x<sup>2</sup> + " + b + "x + " + c + " = 0";
+        document.getElementById("listHow").innerHTML = "Using the quadratic formula where a = " + a + ", b = " + b + ", c = " + c;
+        document.getElementById("steps").innerHTML = "x = (-(" + b + ") ± √((-(" + b + "))<sup>2</sup> - 4(" + a + ")(" + c + "))) / (2(" + a + "))<br>"
+            + "x = ((" + (b * -1) + ") ± √(" + Math.pow(b, 2) + " - 4(" + a + ")(" + c + "))) / (2(" + a + "))<br>"
+            + "x = ((" + (b * -1) + ") ± √(" + Math.pow(b, 2) + " - (" + (4 * a * c) + "))) / (" + 2 * a + ")<br>"
+            + "x = ((" + (b * -1) + ") ± √(" + (Math.pow(b, 2) + (-1 * (4 * a * c))) + ")) / (" + 2 * a + ")<br>"
+            + "root at x = (" + (b * -1) + " + " + Math.sqrt(Math.pow(b, 2) - 4 * a * c) + ") / " + 2 * a + " = " + ((b * -1) + Math.sqrt(Math.pow(b, 2) - 4 * a * c)) / (2 * a) + "<br>"
+            + "root at x = (" + (b * -1) + " - " + Math.sqrt(Math.pow(b, 2) - 4 * a * c) + ") / " + 2 * a + " = " + ((b * -1) - Math.sqrt(Math.pow(b, 2) - 4 * a * c)) / (2 * a);
+
+
     } else if (status1 == false && status2 == true && letters == false) {
         document.getElementById("output").innerHTML = "Intercept at x = " + int1;
         document.getElementById("output2").innerHTML = a + "x<sup>2</sup> + " + b + "x + " + c + " = 0";
@@ -67,7 +84,16 @@ function quadraticFunc() {
         document.getElementById("output3").innerHTML = a + "(" + int1 + ")" + "<sup>2</sup> + " + b + "(" + int1 + ") + " + c + " = 0";
         document.getElementById("output4").innerHTML = "";
         document.getElementById("output5").innerHTML = "F(x) = " + a + "x<sup>2</sup> + " + b + "x + " + c;
-        
+
+        document.getElementById("problem").innerHTML = "Find the solution for:<br>" + a + "x<sup>2</sup> + " + b + "x + " + c + " = 0";
+        document.getElementById("listHow").innerHTML = "Using the quadratic formula where a = " + a + ", b = " + b + ", c = " + c;
+        document.getElementById("steps").innerHTML = "x = (-(" + b + ") ± √((-(" + b + "))<sup>2</sup> - 4(" + a + ")(" + c + "))) / (2(" + a + "))<br>"
+            + "x = ((" + (b * -1) + ") ± √(" + Math.pow(b, 2) + " - 4(" + a + ")(" + c + "))) / (2(" + a + "))<br>"
+            + "x = ((" + (b * -1) + ") ± √(" + Math.pow(b, 2) + " - (" + (4 * a * c) + "))) / (" + 2 * a + ")<br>"
+            + "x = ((" + (b * -1) + ") ± √(" + (Math.pow(b, 2) + (-1 * (4 * a * c))) + ")) / (" + 2 * a + ")<br>"
+            + "root at x = (" + (b * -1) + " + " + Math.sqrt(Math.pow(b, 2) - 4 * a * c) + ") / " + 2 * a + " = " + ((b * -1) + Math.sqrt(Math.pow(b, 2) - 4 * a * c)) / (2 * a) + "<br>"
+            + "root at x = (" + (b * -1) + " - " + Math.sqrt(Math.pow(b, 2) - 4 * a * c) + ") / " + 2 * a + " = " + ((b * -1) - Math.sqrt(Math.pow(b, 2) - 4 * a * c)) / (2 * a);
+
     } else if (status1 == true && status2 == false && letters == false) {
         document.getElementById("output").innerHTML = "Intercept at x = " + int2;
         document.getElementById("output2").innerHTML = a + "x<sup>2</sup> + " + b + "x + " + c + " = 0";
@@ -76,7 +102,16 @@ function quadraticFunc() {
         document.getElementById("output3").innerHTML = a + "(" + int2 + ")" + "<sup>2</sup>+" + b + "(" + int2 + ")+" + c + "=0";
         document.getElementById("output4").innerHTML = "";
         document.getElementById("output5").innerHTML = "F(x) = " + a + "x<sup>2</sup> + " + b + "x + " + c;
-        
+
+        document.getElementById("problem").innerHTML = "Find the solution for:<br>" + a + "x<sup>2</sup> + " + b + "x + " + c + " = 0";
+        document.getElementById("listHow").innerHTML = "Using the quadratic formula where a = " + a + ", b = " + b + ", c = " + c;
+        document.getElementById("steps").innerHTML = "x = (-(" + b + ") ± √((-(" + b + "))<sup>2</sup> - 4(" + a + ")(" + c + "))) / (2(" + a + "))<br>"
+            + "x = ((" + (b * -1) + ") ± √(" + Math.pow(b, 2) + " - 4(" + a + ")(" + c + "))) / (2(" + a + "))<br>"
+            + "x = ((" + (b * -1) + ") ± √(" + Math.pow(b, 2) + " - (" + (4 * a * c) + "))) / (" + 2 * a + ")<br>"
+            + "x = ((" + (b * -1) + ") ± √(" + (Math.pow(b, 2) + (-1 * (4 * a * c))) + ")) / (" + 2 * a + ")<br>"
+            + "root at x = (" + (b * -1) + " + " + Math.sqrt(Math.pow(b, 2) - 4 * a * c) + ") / " + 2 * a + " = " + ((b * -1) + Math.sqrt(Math.pow(b, 2) - 4 * a * c)) / (2 * a) + "<br>"
+            + "root at x = (" + (b * -1) + " - " + Math.sqrt(Math.pow(b, 2) - 4 * a * c) + ") / " + 2 * a + " = " + ((b * -1) - Math.sqrt(Math.pow(b, 2) - 4 * a * c)) / (2 * a);
+
     } else {
         document.getElementById("output").innerHTML = "This function has no real roots.";
         document.getElementById("output2").innerHTML = "";
@@ -89,6 +124,10 @@ function quadraticFunc() {
         } else {
             document.getElementById("output5").innerHTML = "";
         }
+        quadf.style.display = "none";
+        document.getElementById("problem").innerHTML = "";
+        document.getElementById("listHow").innerHTML = "";
+        document.getElementById("steps").innerHTML = "";
     }
 
 
@@ -122,7 +161,7 @@ function funGraph(ctx, axes, func, color, thick) {
     ctx.beginPath();
     ctx.lineWidth = thick;
     ctx.strokeStyle = color;
-    
+
 
     for (var i = iMin; i <= iMax; i++) {
         xx = dx * i; yy = scale * func(xx / scale);
