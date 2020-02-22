@@ -15,34 +15,38 @@
     <br>
     <br>
     <br>
+    <br>
     <center>
         <div style="width: 1000px; height: 1000px; background-color: pink">
             <div style="width:500px; height: 500px; background-color: rgb(110, 110, 255);float: left">
                 <center>
                     <h2>Problem</h2>
                 </center>
-                <br>
-                <center>
-                    <h2>ax<sup>2</sup> + bx + c = 0</h2>
-                </center>
-                <center>
-                    <h2>
-                        <p id="avalue">a: <input type="text" id="aInput" size=4></input></p>
-                    </h2>
-                </center>
-                <center>
-                    <h2>
-                        <p id="bvalue">b: <input type="text" id="bInput" size=4></input></p>
-                    </h2>
-                </center>
-                <center>
-                    <h2>
-                        <p id="cvalue">c: <input type="text" id="cInput" size=4></input></p>
-                    </h2>
-                </center>
-                <br>
-                <center><button onclick="quadraticFunc()" id="button">calculate</button></center>
-                <br>
+
+                <div style="width: 425px; height: 400px; background-color:rgba(255, 255, 255, 0.171); overflow:auto">
+                    <br>
+                    <center>
+                        <h2>ax<sup>2</sup> + bx + c = 0</h2>
+                    </center>
+                    <center>
+                        <h2>
+                            <p id="avalue">a: <input type="text" id="aInput" size=4></input></p>
+                        </h2>
+                    </center>
+                    <center>
+                        <h2>
+                            <p id="bvalue">b: <input type="text" id="bInput" size=4></input></p>
+                        </h2>
+                    </center>
+                    <center>
+                        <h2>
+                            <p id="cvalue">c: <input type="text" id="cInput" size=4></input></p>
+                        </h2>
+                    </center>
+                    <br>
+                    <center><button onclick="quadraticFunc()" id="button">calculate</button></center>
+                    <br>
+                </div>
             </div>
             <div style="width:500px; height: 500px; background-color: green; float: right">
                 <center>
@@ -60,19 +64,22 @@
             <div style="width:500px; height: 500px; background-color: rgb(194, 116, 28); float: right">
                 <center>
                     <h2>Walk Through</h2>
-                    <br>
-                    <h4>
-                        <p id="problem"></p>
-                    </h4>
-                    <h4>
-                        <p id="listHow"></p>
-                    </h4>
-                    <div id="quadform" style="display: none">
-                        \[x = {-b \pm \sqrt{b^2-4ac} \over 2a}\]
+                    <div
+                        style="width: 425px; height: 400px; background-color:rgba(255, 255, 255, 0.171); overflow:auto">
+
+                        <h4>
+                            <p id="problem"></p>
+                        </h4>
+                        <h4>
+                            <p id="listHow"></p>
+                        </h4>
+                        <div id="quadform" style="display: none">
+                            \[x = {-b \pm \sqrt{b^2-4ac} \over 2a}\]
+                        </div>
+                        <h4>
+                            <p id="steps"></p>
+                        </h4>
                     </div>
-                    <h4>
-                        <p id="steps"></p>
-                    </h4>
                 </center>
                 <br>
 
@@ -81,32 +88,40 @@
                 <center>
                     <h2>Solution</h2>
                 </center>
-                <br>
-                <center>
-                    <h2>
-                        <p id="output2"></p>
-                    </h2>
-                </center>
-                <center>
-                    <h2>
-                        <p id="output"></p>
-                    </h2>
-                </center>
-                <center>
-                    <h2>
-                        <p id="output3"></p>
-                    </h2>
-                </center>
-                <center>
-                    <h2>
-                        <p id="output4"></p>
-                    </h2>
-                </center>
+                <div style="width: 425px; height: 400px; background-color:rgba(255, 255, 255, 0.171); overflow:auto">
+                    <center>
+                        <h3>
+                            <p id="output"></p>
+                        </h3>
+                    </center>
+                    <br>
+                    <center>
+                        <h3>
+                            <p id="output2"></p>
+                        </h3>
+                    </center>
+                    <center>
+                        <h3>
+                            <p id="output3"></p>
+                        </h3>
+                    </center>
+                    <center>
+                        <h3>
+                            <p id="output4"></p>
+                        </h3>
+                    </center>
+                </div>
             </div>
         </div>
     </center>
     <br>
     <br>
+    <br>
+    <div
+        style="width: 100%; height: 60px; position: fixed; bottom: 0; left: 0; right: 0; background-color: rgba(49, 49, 49, 0.39) ">
+        <br>
+        <footer style="text-align: center; ">&copy; Copyright 2020 websitename.com</footer>
+    </div>
 
 </BODY>
 
